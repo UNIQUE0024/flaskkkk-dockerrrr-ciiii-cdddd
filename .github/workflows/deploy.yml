@@ -13,14 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 🔹 Debug step to confirm secrets are loaded (safe version)
-      - name: Debug Secrets (Safe)
-        run: |
-          echo "✅ Secrets seem to be loaded successfully!"
-          echo "Docker Username: ${{ secrets.DOCKER_USERNAME }}" | sed 's/./*/g' | head -c 10
-          echo "EC2 Host: ${{ secrets.EC2_HOST }}"
-        shell: bash
-
       - name: Login to Docker Hub
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
